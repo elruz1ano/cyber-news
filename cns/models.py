@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 from django.urls import reverse
 
@@ -17,6 +18,12 @@ class Counter_strike(models.Model):
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_id': self.pk})
 
+    
+    class Meta:
+        verbose_name = 'Клубы Counter-Srike'
+        verbose_name_plural = 'Клубы Counter-Srike'
+        ordering = ['time_create', 'title']
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True)
@@ -27,4 +34,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('category', kwargs={'cat_id': self.pk})
 
-        
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+        ordering = ['id']
